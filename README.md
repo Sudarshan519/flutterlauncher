@@ -1,13 +1,13 @@
 #
 Flutter launcher 
 using packages
-<div>
--launcher Assist
-</div>
+<div>-launcher Assist
+  </div>
+  <div>
+- permission handler</div>
 
-- permission handler
 
 
-images
-<span><img src="screenshots/screenshot.jpg" height=380 width=280></span>
-<img src="screenshots/screenshot2.jpg" height=380 width=280 >
+<div>ScreenShots:</div>
+<img src="/screenshots/screenshot.jpg" height=380 width=280>
+<img src="/screenshots/screenshot2.jpg" height=380 width=280 >
