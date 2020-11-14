@@ -8,7 +8,8 @@ using packages
 
 
 
-<div>ScreenShots:</div>
+<div>ScreenShots:
 
 <img src="/screenshots/screenshot.jpg" height=380 width=280>
 <img src="/screenshots/screenshot2.jpg" height=380 width=280 >
+</div>
