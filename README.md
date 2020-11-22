@@ -1,5 +1,12 @@
 #
 Flutter launcher 
+
+
+## Features
+
+* Launch App
+* Search apps on system
+* Minimal use of system resources
 using packages
 <div>-launcher Assist
   </div>
