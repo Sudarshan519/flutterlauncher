@@ -16,10 +16,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var installedApps = [];
   List<String> allApps = [
-    'com.android.quicksearchbox',
-    'com.android.gallery3d',
     'com.android.messaging',
-    'com.android.quicksearchbox'
+    'com.android.email',
+    'com.android.gallery3d',
+    'com.android.quicksearchbox',
+    'com.android.camera2'
   ];
   var wallpaper;
   bool hidden = true;
@@ -147,7 +148,9 @@ class _MyAppState extends State<MyApp> {
                                         .push(MaterialPageRoute(
                                       builder: (context) {
                                         return AppScreen(
-                                            wallpaper, installedApps, );
+                                          wallpaper,
+                                          installedApps,
+                                        );
                                       },
                                     ));
                                   },
@@ -160,26 +163,55 @@ class _MyAppState extends State<MyApp> {
                                   child: Container(
                                     height: height * .16,
                                     color: Colors.white24,
-                                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            LauncherAssist.launchApp(
+                                                allApps[0]);
+                                          },
+                                          child: InkWell(
+                                            child: Icon(
+                                              Icons.message,
+                                              color: Colors.white,
+                                              size: 60,
+                                            ),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            LauncherAssist.launchApp(
+                                                allApps[1]);
+                                          },
+                                          child: Icon(Icons.email,
+                                              size: 60, color: Colors.white),
+                                        ),
                                         InkWell(
                                           onTap: () {
                                             LauncherAssist.launchApp(
-                                                'com.android.gallery3d');
+                                                allApps[2]);
                                           },
-                                          child: Icon(
-                                            Icons.messenger,
-                                            size: 60,
-                                          ),
+                                          child: Icon(Icons.image,
+                                              size: 60, color: Colors.white),
                                         ),
-                                        Icon(Icons.email,
-                                            size: 60, color: Colors.white),
-                                        Icon(Icons.image,
-                                            size: 60, color: Colors.white),
-                                        Icon(Icons.explore_rounded,
-                                            size: 60, color: Colors.white),
-                                        Icon(Icons.camera,
-                                            size: 60, color: Colors.white),
+                                        GestureDetector(
+                                          onTap: () {
+                                            LauncherAssist.launchApp(
+                                                allApps[3]);
+                                          },
+                                          child: Icon(Icons.explore_rounded,
+                                              size: 60, color: Colors.white),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            LauncherAssist.launchApp(
+                                                allApps[4]);
+                                          },
+                                          child: Icon(Icons.camera,
+                                              size: 60, color: Colors.white),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -191,119 +223,6 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   )
-                  // SafeArea(
-                  //   child: Container(
-                  //     child: Column(
-                  //       children: [
-                  //         Padding(
-                  //             padding: const EdgeInsets.only(
-                  //                 left: 20.0, right: 20, top: 10, bottom: 2),
-                  //             child: Material(
-                  //               elevation: 0,
-                  //               color: Colors.white.withOpacity(.4),
-                  //               borderRadius: BorderRadius.circular(30),
-                  //               // color: Colors.black.withOpacity(.7),
-                  //               child: Padding(
-                  //                 padding: const EdgeInsets.only(
-                  //                     left: 18.0, right: 20),
-                  //                 child: TypeAheadField(
-                  //                   textFieldConfiguration:
-                  //                       TextFieldConfiguration(
-                  //                     decoration: InputDecoration(
-                  //                       suffix: InkWell(
-                  //                         child: Icon(Icons.close),
-                  //                         onTap: () {
-                  //                           _typeAheadController.clear();
-                  //                           FocusScope.of(context).unfocus();
-                  //                         },
-                  //                       ),
-                  //                       hintText: "Search",
-                  //                       hintStyle: TextStyle(
-                  //                           color: Colors.black45, fontSize: 20),
-                  //                       icon: Icon(Icons.search),
-                  //                       border: InputBorder.none,
-
-                  //                       //   prefixIcon: Icon(Icons.search),
-                  //                     ),
-                  //                     controller: this._typeAheadController,
-                  //                   ),
-                  //                   suggestionsCallback: (pattern) {
-                  //                     return StateService.getSuggestions(
-                  //                         pattern, allApps);
-                  //                   },
-                  //                   transitionBuilder:
-                  //                       (context, suggestionsBox, controller) {
-                  //                     return suggestionsBox;
-                  //                   },
-                  //                   itemBuilder: (context, suggestion) {
-                  //                     return ListTile(
-                  //                       title: Text(suggestion),
-                  //                       onTap: () {
-                  //                         int i = allApps.indexOf(suggestion);
-                  //                         LauncherAssist.launchApp(
-                  //                             installedApps[i]['package']);
-                  //                       },
-                  //                     );
-                  //                   },
-                  //                   onSuggestionSelected: (suggestion) {
-                  //                     this._typeAheadController.text =
-                  //                         suggestion;
-                  //                     LauncherAssist.launchApp('1');
-                  //                   },
-                  //                 ),
-                  //               ),
-                  //             )),
-                  //         !hidden
-                  //             ? Expanded(
-                  //                 child: ListView.builder(
-                  //                 itemCount: installedApps.length,
-                  //                 physics: BouncingScrollPhysics(),
-                  //                 itemBuilder: (BuildContext context, int i) {
-                  //                   allApps.add(installedApps[i]['label']);
-
-                  //                   return Padding(
-                  //                     padding: const EdgeInsets.all(8.0),
-                  //                     child: ListTile(
-                  //                       leading: Image.memory(
-                  //                           installedApps[i]['icon']),
-                  //                       onTap: () => LauncherAssist.launchApp(
-                  //                           installedApps[i]['package']),
-                  //                       title: Text(
-                  //                         installedApps[i]['label'],
-                  //                         style: TextStyle(
-                  //                             color: Colors.white,
-                  //                             fontSize: 24,
-                  //                             fontWeight: FontWeight.bold),
-                  //                       ),
-                  //                     ),
-                  //                   );
-                  //                 },
-                  //               ))
-                  //             : Expanded(
-
-                  //                 child: Align(
-                  //                   alignment: Alignment.bottomRight,
-                  //                   child: Padding(
-                  //                     padding: const EdgeInsets.only(bottom: 30,right:30),
-                  //                     child: IconButton(
-                  //                       icon: Icon(
-                  //                         Icons.grid_view,
-                  //                         size: 60,
-                  //                         color: Colors.white,
-                  //                       ),
-                  //                       onPressed: () {
-                  //                         setState(() {
-                  //                           hidden = false;
-                  //                         });
-                  //                       },
-                  //                     ),
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // )
                 ],
               )
             : Center(
